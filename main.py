@@ -1,4 +1,5 @@
 from flask import Flask
+from rmrb import tmp
 app = Flask(__name__)
 app.config['DEBUG'] = True
 
@@ -9,7 +10,8 @@ app.config['DEBUG'] = True
 @app.route('/')
 def hello():
     """Return a friendly HTTP greeting."""
-    return 'Hello World!'
+    tmp()
+    return "htllo"#urllib.urlopen('http://www.baidu.com').read()
 
 
 @app.errorhandler(404)
