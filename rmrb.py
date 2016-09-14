@@ -33,7 +33,7 @@ def tmp():
     print urlbase
     banlist = re.compile('nbs.D110000renmrb_\d{2}.htm')
     ban_url_set=set()
-    with open('a.txt','w') as f:
+    for c in '1':#with open('a.txt','w') as f:
         html = urllib.urlopen(r'%snbs.D110000renmrb_01.htm'%(urlbase)).read()
         l = re.findall(banlist,html)
         #print html
