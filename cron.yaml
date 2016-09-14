@@ -1,0 +1,5 @@
+cron:
+- description: daily summary job
+  url: /
+  target: 
+  schedule: every 10 mins

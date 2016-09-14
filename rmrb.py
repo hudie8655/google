@@ -9,7 +9,7 @@ from email.mime.text import MIMEText
 
 
 def send_mail(content):
-    me="hello"+"<"+mail_user+"@"+mail_postfix+">"
+    #me="hello"+"<"+mail_user+"@"+mail_postfix+">"
     msg = MIMEText(content,_subtype='plain',_charset='gb2312')
     msg['Subject'] = datetime.datetime.now().strftime('%Y-%m/%d')
     msg['From'] = 'rmrb321@sina.cn'
@@ -32,6 +32,7 @@ def tmp():
     urlbase = r'http://paper.people.com.cn/rmrb/html/%s/'%(today)
     print urlbase
     banlist = re.compile('nbs.D110000renmrb_\d{2}.htm')
+    #banlist = re.compile('nbs.D110000renmrb_01.htm')
     ban_url_set=set()
     for c in '1':#with open('a.txt','w') as f:
         html = urllib.urlopen(r'%snbs.D110000renmrb_01.htm'%(urlbase)).read()
