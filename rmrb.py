@@ -26,8 +26,8 @@ def send_mail(content):
         return False
 
 def tmp():
-    #today = datetime.datetime.now().strftime('%Y-%m/%d')
-    today='2016-09/11'
+    today = datetime.datetime.now().strftime('%Y-%m/%d')
+    #today='2016-09/11'
     print today
     urlbase = r'http://paper.people.com.cn/rmrb/html/%s/'%(today)
     print urlbase
