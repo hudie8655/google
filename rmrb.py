@@ -34,38 +34,38 @@ def tmp():
     banlist = re.compile('nbs.D110000renmrb_\d{2}.htm')
     #banlist = re.compile('nbs.D110000renmrb_01.htm')
     ban_url_set=set()
-    for c in '1':#with open('a.txt','w') as f:
-        html = urllib.urlopen(r'%snbs.D110000renmrb_01.htm'%(urlbase)).read()
-        l = re.findall(banlist,html)
-        #print html
-        for ll in l:
-            ban_url_set.add(ll)
-            #f.write(ll+'\n')
-            print ban_url_set
 
-        article_list = re.compile(r'nw.D110000renmrb_\d{8}_\d{1,2}-\d{2}.htm')
-        content_url_set = set()
-        for ban_url in ban_url_set:
-            ban_page = urllib.urlopen(urlbase+ban_url).read()
-            l = re.findall(article_list,ban_page)
-            for ll in l:
-                content_url_set.add(ll)
-            print content_url_set
-            print len(content_url_set)
+	html = urllib.urlopen(r'%snbs.D110000renmrb_01.htm'%(urlbase)).read()
+	l = re.findall(banlist,html)
+	#print html
+	for ll in l:
+		ban_url_set.add(ll)
+		print ban_url_set
 
-        #article_content = re.compile(r'<title>(.*?)</title>.*?<!--enpcontent-->(.*?)<!--/enpcontent-->')
-        content_list=[]
+	article_list = re.compile(r'nw.D110000renmrb_\d{8}_\d{1,2}-\d{2}.htm')
+	content_url_set = set()
+	for ban_url in ban_url_set:
+		ban_page = urllib.urlopen(urlbase+ban_url).read()
+		l = re.findall(article_list,ban_page)
+		for ll in l:
+			content_url_set.add(ll)
+		print content_url_set
+		print len(content_url_set)
 
 
-        for content_url in content_url_set:
-            content_page = urllib.urlopen(urlbase+content_url).read()
-            results = re.findall(re.compile(r'<title>(.*?)</title>.*?<!--enpcontent-->(.*?)<!--/enpcontent-->',re.M|re.S),content_page)
-            if results:
-                title=results[0][0]
-                content=results[0][1]
-                content_list.append(json.dumps({'title':title,'content':content,'date':content_url[17:23],'ban':content_url[-6:-4]}))
-                #f.write(content+'\n')
+	content_list=[]
 
-        body = "###".join(content_list)
-        print len(body)
-        send_mail(body)
+
+	for content_url in content_url_set:
+		content_page = urllib.urlopen(urlbase+content_url).read()
+		results = re.findall(re.compile(r'<title>(.*?)</title>.*?<!--enpcontent-->(.*?)<!--/enpcontent-->',re.M|re.S),content_page)
+		if results:
+			title=results[0][0]
+			content=results[0][1]
+			content_list.append(json.dumps({'title':title,'content':content,'date':content_url[17:23],'ban':content_url[-6:-4]}))
+
+
+	body = "###".join(content_list)
+	print len(body)
+	send_mail(body)
+	print 'sent mail'
