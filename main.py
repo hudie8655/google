@@ -1,5 +1,6 @@
 from flask import Flask
 from rmrb import tmp
+from google.appengine.api import taskqueue
 app = Flask(__name__)
 app.config['DEBUG'] = True
 
@@ -10,7 +11,7 @@ app.config['DEBUG'] = True
 @app.route('/')
 def hello():
     """Return a friendly HTTP greeting."""
-    tmp()
+    taskqueue.add(method=GET, url='/rmrb', target='rmrb')
     return "htllo"#urllib.urlopen('http://www.baidu.com').read()
 
 
@@ -18,3 +19,7 @@ def hello():
 def page_not_found(e):
     """Return a custom 404 error."""
     return 'Sorry, nothing at this URL.', 404
+	
+@app.route('/rmrb')
+def rmrb():
+	tmp()
