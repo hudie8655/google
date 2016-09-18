@@ -11,7 +11,7 @@ app.config['DEBUG'] = True
 @app.route('/')
 def hello():
     """Return a friendly HTTP greeting."""
-    taskqueue.add(method=GET, url='/rmrb', target='rmrb')
+    taskqueue.add(url='/rmrb')#, target='rmrb')
     return "htllo"#urllib.urlopen('http://www.baidu.com').read()
 
 
@@ -20,6 +20,7 @@ def page_not_found(e):
     """Return a custom 404 error."""
     return 'Sorry, nothing at this URL.', 404
 	
-@app.route('/rmrb')
+@app.route('/rmrb',methods=['POST','GET'])
 def rmrb():
 	tmp()
+	return 'sended'

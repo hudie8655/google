@@ -74,14 +74,5 @@ def tmp():
 
 
 
-class UpdateCounterHandler(webapp2.RequestHandler):
-    def get(self):
-        def update_counter():
-            tmp()
-
-        update_counter()
 
 
-app = webapp2.WSGIApplication([
-    ('/update_counter', UpdateCounterHandler)
-], debug=True)
