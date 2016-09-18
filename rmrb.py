@@ -63,7 +63,7 @@ def tmp():
         if results:
             title=results[0][0]
             content=results[0][1]
-            content_list.append(json.dumps({'title':title,'content':content,'date':content_url[17:23],'ban':content_url[-6:-4]}))
+            content_list.append(json.dumps({'title':title,'content':content,'date':content_url[17:25],'ban':content_url[-6:-4]}))
 
 
     body = "###".join(content_list)
