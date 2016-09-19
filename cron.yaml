@@ -2,7 +2,7 @@ cron:
 - description: daily summary job
   url: /
   target: 
-  schedule: every day 08:03
+  schedule: every day 08:15
   timezone: Asia/Shanghai
   retry_parameters:
     min_backoff_seconds: 2.5
