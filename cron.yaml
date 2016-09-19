@@ -2,4 +2,8 @@ cron:
 - description: daily summary job
   url: /
   target: 
-  schedule: every 24 hours
+  schedule: every day 08:03
+  timezone: Asia/Shanghai
+  retry_parameters:
+    min_backoff_seconds: 2.5
+    max_doublings: 5
